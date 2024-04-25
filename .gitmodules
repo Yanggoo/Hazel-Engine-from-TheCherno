@@ -1,4 +1,4 @@
-[submodule "vendor/spdlog"]
+[submodule "Hazel/vendor/spdlog"]
 	path = vendor/spdlog
 	url = https://github.com/gabime/spdlog
 [submodule "Hazel/vendor/GLFW"]
