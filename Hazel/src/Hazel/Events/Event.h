@@ -1,5 +1,5 @@
 #pragma once
-#include "Hazel/Core.h"
+#include "Hazel/Core/Base.h"
 
 
 namespace Hazel {
@@ -30,7 +30,7 @@ namespace Hazel {
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const {return category;}
 
 
-	class HAZEL_API Event {
+	class  Event {
 		friend class EventDispatcher;
 	public:
 		Event() {}
@@ -46,7 +46,7 @@ namespace Hazel {
 
 	};
 
-	class HAZEL_API EventDispatcher {
+	class  EventDispatcher {
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 	public:
@@ -55,7 +55,7 @@ namespace Hazel {
 		template <typename T>
 		bool Dispatch(EventFn<T> func) {
 			if (m_Event.GetEventType() == T::GetStaticEventType()) {
-				m_Event.handled = func(*(T*)&m_Event);
+				m_Event.handled |= func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

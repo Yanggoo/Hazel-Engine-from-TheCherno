@@ -1,24 +1,40 @@
 #include "hzpch.h"
 #include "Renderer.h"
 #include "RenderCommand.h"
+#include "Renderer2D.h"
 namespace Hazel {
-	Renderer::SceneData* Renderer::s_SceneData = new Renderer::SceneData;
+	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
 
-	void Renderer::Begin(OrthographicCamera& camera)
+	void Renderer::Init()
+	{
+		HZ_PROFILE_FUNCTION();
+
+		RenderCommand::init();
+		Renderer2D::Init();
+	}
+
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		RenderCommand::SetViewport(0, 0, width, height);
+	}
+
+	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		s_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
-	void Renderer::End()
+	void Renderer::EndScene()
 	{
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
+
+	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform/*= glm::mat4(1.0f)*/)
 	{
 		vertexArray->Bind();
 		shader->Bind();
-		shader->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
+		shader->SetMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
+		shader->SetMat4("u_Transform", transform);
 		RenderCommand::DrawIndexed(vertexArray);
 	}
 

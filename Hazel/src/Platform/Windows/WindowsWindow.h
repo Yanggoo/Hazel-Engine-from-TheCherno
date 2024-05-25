@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Hazel/Window.h"
+#include "Hazel/Core/Window.h"
 #include "GLFW/glfw3.h"
 #include "Hazel/Renderer/GraphicContext.h"
 namespace Hazel {
@@ -50,7 +50,7 @@ namespace Hazel {
 		};
 
 		WindowData m_Data;
-		GraphicContext* m_Context;
+		Scope<GraphicContext> m_Context;
 	};
 }
 

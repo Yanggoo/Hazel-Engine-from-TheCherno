@@ -1,26 +1,27 @@
 #pragma once
 #include "Event.h"
+#include "Hazel/Core/KeyCodes.h"
 
 namespace Hazel {
-	class HAZEL_API KeyEvent: public Event {
+	class  KeyEvent: public Event {
 	public:
-		inline int GetKeyCode() {
+		inline KeyCode GetKeyCode() {
 			return m_KeyCode;
 		}
 
 		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryKeyboard | EventCategory::EventCategoryInput);
 
 	protected:
-		KeyEvent(int keyCode) :m_KeyCode(keyCode) {}
-		int m_KeyCode;
+		KeyEvent(KeyCode keyCode) :m_KeyCode(keyCode) {}
+		KeyCode m_KeyCode;
 	};
 
 
-	class HAZEL_API KeyPressedEvent : public KeyEvent {
+	class  KeyPressedEvent : public KeyEvent {
 	public:
-		KeyPressedEvent(int keyCode, int repeatCount) :KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
+		KeyPressedEvent(KeyCode keyCode, int repeatCount) :KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
 		EVENT_CLASS_TYPE(KeyPressed)
-		inline int GetRepeateCount() { return m_RepeatCount; }
+		inline int GetRepeatCount() { return m_RepeatCount; }
 		std::string ToString() const override {
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
@@ -32,9 +33,9 @@ namespace Hazel {
 
 	};
 	
-	class HAZEL_API KeyReleasedEvent : public KeyEvent{
+	class  KeyReleasedEvent : public KeyEvent{
 	public:
-		KeyReleasedEvent(int keyCode, int repeatCount) :KeyEvent(keyCode){}
+		KeyReleasedEvent(KeyCode keyCode, int repeatCount) :KeyEvent(keyCode){}
 		EVENT_CLASS_TYPE(KeyReleased)
 		std::string ToString() const override {
 			std::stringstream ss;
@@ -45,9 +46,9 @@ namespace Hazel {
 
 	};
 
-	class HAZEL_API KeyTypedEvent : public KeyEvent {
+	class  KeyTypedEvent : public KeyEvent {
 	public:
-		KeyTypedEvent(int keyCode) :KeyEvent(keyCode) {}
+		KeyTypedEvent(KeyCode keyCode) :KeyEvent(keyCode) {}
 		EVENT_CLASS_TYPE(KeyTyped)
 			std::string ToString() const override {
 			std::stringstream ss;
