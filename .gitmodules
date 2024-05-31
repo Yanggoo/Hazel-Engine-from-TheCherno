@@ -1,19 +1,17 @@
 [submodule "Hazel/vendor/spdlog"]
-	path = vendor/spdlog
-	url = ../../gabime/spdlog
+	path = Hazel/vendor/spdlog
+	url = https://github.com/gabime/spdlog
 	branch = v1.x
-[submodule "Hazel/vendor/GLFW"]
-	path = Hazel/vendor/GLFW
-	url = ../../TheCherno/glfw
-	branch = master
 [submodule "Hazel/vendor/imgui"]
 	path = Hazel/vendor/imgui
-	url = ../../TheCherno/imgui
+	url = https://github.com/ocornut/imgui
 	branch = docking
-[submodule "Hazel/vendor/glm"]
-	path = Hazel/vendor/glm
-	url = ../../g-truc/glm
-	branch = master
 [submodule "Hazel/vendor/yaml-cpp"]
 	path = Hazel/vendor/yaml-cpp
 	url = https://github.com/thecherno/yaml-cpp
+[submodule "Hazel/vendor/glm"]
+	path = Hazel/vendor/glm
+	url = https://github.com/g-truc/glm
+[submodule "Hazel/vendor/GLFW"]
+	path = Hazel/vendor/GLFW
+	url = https://github.com/TheCherno/glfw/tree/9bed794ab7c1b961aaca259403695bbd3870d3b3
