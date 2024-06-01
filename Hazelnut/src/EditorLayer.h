@@ -1,5 +1,6 @@
 #pragma once
 #include "Hazel.h"
+#include "Hazel/Renderer/EditorCamera.h"
 namespace Hazel {
 	class EditorLayer : public Layer {
 	public:
@@ -32,5 +33,7 @@ namespace Hazel {
 		Entity m_SecondCamera;
 		bool m_PrimaryCamera = true;
 		SceneHierarchyPanel m_SceneHierarchyPanel;
+		int m_GizmoType = -1;
+		EditorCamera m_EditorCamera;
 	};
 }
